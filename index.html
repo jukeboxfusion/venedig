@@ -12,18 +12,21 @@
 
         <title>Jukebox Fusion</title>
         <link rel="stylesheet" href="./styles.css" />
+        <script src="./scripts/loopify.js"></script>
+        <script src="./scripts/wad.js"></script>
         <script type="module" src="./scripts/app.js" defer></script>
     </head>
     <body>
-        <div id="overlay">
-            <div class="container">
-                <button id="playButton">Start context</button>
-            </div>
+        <div class="container">
+            <button id="startContext">Start context</button>
         </div>
+
         <div class="App-header">
             <div class="container">
                 <div id="particleContainer"></div>
             </div>
         </div>
+
+        <div class="container"><button id="playPause">Play Pause</button></div>
     </body>
 </html>

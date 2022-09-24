@@ -2,12 +2,19 @@
 
 // get all elements
 
-const playButton = document.getElementById("playButton");
+const startContext = document.getElementById("startContext");
 const obama = document.getElementById("obama");
 const overlay = document.getElementById("overlay");
 
 const container = document.getElementById("particleContainer");
 const canvas = document.createElement("canvas");
+
+const playPause = document.getElementById("playPause");
+
+let musicPlaying = false;
+
+const samples = [];
+const NUMBER_OF_SAMPLES = 59;
 
 let ROWS = 200;
 let COLS = 400;
@@ -77,6 +84,8 @@ const particleInit = () => {
         my = e.clientY - bounds.top;
     });
 
+    canvas.addEventListener("click", playSound);
+
     container.appendChild(canvas);
 };
 
@@ -115,23 +124,25 @@ const particleStep = () => {
 // variables
 
 let audioCtx;
-const samples = [];
 
 // functions
-
-const loadSamples = () => {
-    let sampleFiles = fs.readdirSync("/samples");
-    console.log(sampleFiles);
-};
 
 const init = () => {
     if (!audioCtx) {
         try {
             audioCtx = new AudioContext();
-            overlay.style.display = "none";
+
+            let parentNode = startContext.parentElement;
+            parentNode.remove();
+
+            playPause.style.display = "block";
 
             particleInit();
             particleStep();
+
+            //loadSamples();
+
+            loopify("../audio/ambient.wav", ready);
 
             console.log("created audiocontext");
         } catch (e) {
@@ -140,15 +151,74 @@ const init = () => {
     }
 };
 
-function playSound(buffer) {
-    var source = context.createBufferSource(); // creates a sound source
-    source.buffer = buffer; // tell the source which sound to play
-    source.connect(audioCtx.destination); // connect the source to the context's destination (the speakers)
-    source.noteOn(0); // play the source now
-}
+const loadSamples = () => {
+    for (let i = 0; i < NUMBER_OF_SAMPLES; i++) {
+        samples.push(
+            new Wad({
+                source: "../audio/samples/sample_" + i + ".wav",
+                delay: {},
+                panning: 0,
+                panningModel: "HRTF",
+                rolloffFactor: 1,
+                reverb: {
+                    impulse: "../audio/IMreverbs/Rays.wav",
+                    wet: 1,
+                },
+            })
+        );
+    }
+};
+
+const getRandomNumber = (max) => {
+    return Math.floor(Math.random() * max);
+};
+
+const getRandomMinMax = (min, max) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+};
+
+const ready = (err, loop) => {
+    if (err) {
+        console.warn(err);
+    }
+
+    loop.play();
+
+    playPause.addEventListener("click", () => {
+        musicPlaying = !musicPlaying;
+
+        if (musicPlaying) loop.stop();
+        else loop.play();
+    });
+};
+
+const playSound = (e) => {
+    console.log(e.pageX, e.pageY);
+    let rnd = getRandomNumber(NUMBER_OF_SAMPLES);
+    let rndDelayTime = Math.random() * 2;
+    let rndFeedback = Math.random() * 1;
+    let rndPan = Math.random() * 2;
+
+    const parameters = {
+        delay: {
+            feedback: rndFeedback,
+            wet: 1,
+            delayTime: rndDelayTime,
+        },
+    };
+    //   panning: [
+    //     getRandomMinMax(-50, 50),
+    //     getRandomMinMax(-50, 50),
+    //     getRandomMinMax(-50, 50),
+    // ],
+
+    samples[rnd].play(parameters);
+};
 
 const playRandom = () => {};
 
-// event listener
+// wait till everything is loaded
 
-playButton.addEventListener("click", init);
+window.addEventListener("load", () => {
+    startContext.addEventListener("click", init);
+});

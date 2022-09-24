@@ -43,10 +43,17 @@ body {
     justify-content: center;
   }
 
-  #playButton {
+  #startContext {
     position: absolute;
     left: 50%;
     top: 50%;
+  }
+
+  #playPause {
+    display: none;
+    position: absolute;
+    left: 90%;
+    top: 90%;
   }
 
   #particleContainer {
