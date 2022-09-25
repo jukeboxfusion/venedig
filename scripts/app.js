@@ -121,6 +121,20 @@ const particleStep = () => {
     requestAnimationFrame(particleStep);
 };
 
+const loadSamples = () => {
+    for (let i = 1; i <= NUMBER_OF_SAMPLES; i++) {
+        samples.push(
+            new Wad({
+                source: "../audio/samples/sample_" + i + ".wav",
+                delay: {},
+                panning: 0,
+                panningModel: "HRTF",
+                rolloffFactor: 1,
+            })
+        );
+    }
+};
+
 // variables
 
 let audioCtx;
@@ -140,7 +154,7 @@ const init = () => {
             particleInit();
             particleStep();
 
-            //loadSamples();
+            loadSamples();
 
             loopify("../audio/ambient.wav", ready);
 
@@ -148,24 +162,6 @@ const init = () => {
         } catch (e) {
             alert("Web Audio API is not supported in this browser");
         }
-    }
-};
-
-const loadSamples = () => {
-    for (let i = 0; i < NUMBER_OF_SAMPLES; i++) {
-        samples.push(
-            new Wad({
-                source: "../audio/samples/sample_" + i + ".wav",
-                delay: {},
-                panning: 0,
-                panningModel: "HRTF",
-                rolloffFactor: 1,
-                reverb: {
-                    impulse: "../audio/IMreverbs/Rays.wav",
-                    wet: 1,
-                },
-            })
-        );
     }
 };
 
