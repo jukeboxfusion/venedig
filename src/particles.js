@@ -12,8 +12,6 @@ export default function Particles(props) {
 
     const containerRef = useRef();
 
-    const noise3D = props.noise;
-
     let img = new Image();
 
     let imgWidth = 250;
@@ -26,7 +24,7 @@ export default function Particles(props) {
     let particles = [];
     let mx, my, bounds, w, h, ctx, tog, b, a, n, p, container, canvas;
 
-    let tuna, gain, reverb, panner, delay, phaser, tremolo, noiseZ, field;
+    let tuna, gain, reverb, panner, delay, phaser, tremolo;
 
     useEffect(() => {
         if (!container) {
@@ -37,7 +35,6 @@ export default function Particles(props) {
     const init = () => {
         canvas = document.createElement("canvas");
         container = containerRef.current;
-        noiseZ = 0;
 
         if (audioCtx) {
             tuna = new Tuna(audioCtx);
@@ -145,27 +142,6 @@ export default function Particles(props) {
         tremoloUpdate(e);
     };
 
-    const initField = () => {
-        field = new Array(COLS);
-        for (let x = 0; x < COLS; x++) {
-            field[x] = new Array(COLS);
-            for (let y = 0; y < ROWS; y++) {
-                field[x][y] = [0, 0];
-            }
-        }
-    };
-
-    const calculateField = () => {
-        for (let x = 0; x < COLS; x++) {
-            for (let y = 0; y < ROWS; y++) {
-                let angle = noise3D(x / 50, y / 50, noiseZ) * Math.PI * 2;
-                let length = noise3D(x / 100 + 40000, y / 100 + 40000, noiseZ);
-                field[x][y][0] = angle;
-                field[x][y][1] = length;
-            }
-        }
-    };
-
     const tremoloUpdate = (e) => {
         let rnd = Math.random();
 
@@ -226,9 +202,6 @@ export default function Particles(props) {
 
             ctx.putImageData(a, 0, 0);
         }
-
-        // calculateField();
-        // noiseZ += 0.004;
 
         requestAnimationFrame(drawParticles);
     };

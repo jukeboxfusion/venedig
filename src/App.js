@@ -2,21 +2,15 @@
 import { jsx } from "theme-ui";
 import "./App.css";
 import Particles from "./particles";
-import { Fragment, useState, useRef } from "react";
+import { Fragment, useState } from "react";
 import Tuna from "tunajs";
 import SineWave from "./sine-wave";
-import BackgroundAtmo from "./background-atmo";
-import { createNoise3D } from "simplex-noise";
 
 function App() {
     const publicUrl = process.env.PUBLIC_URL;
     const [audio, setAudio] = useState(false);
     const [audioContext, setAudioContext] = useState(null);
     const [bufferedSamples, setBufferedSamples] = useState([]);
-    // variables
-
-    // const circleRef = useRef();
-    // const circle = circleRef.current;
 
     let audioCtx;
     let tuna, chorus, atmoGain;
@@ -24,10 +18,6 @@ function App() {
     let impulse;
     const sampleBuffer = [];
     const NUMBER_OF_SAMPLES = 16;
-
-    const noise3D = createNoise3D();
-
-    // initialize the noise function
 
     const setupAudio = () => {
         if (!audioCtx) {
@@ -107,7 +97,6 @@ function App() {
                         sampleBuffer={bufferedSamples}
                         publicUrl={publicUrl}
                         numberSamples={NUMBER_OF_SAMPLES}
-                        noise={noise3D}
                     />
                     <SineWave audioCtx={audioContext} />
                 </Fragment>
@@ -120,7 +109,6 @@ function App() {
                                 display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
-                                zIndex: 32442342334,
                             }}
                         >
                             <div
@@ -131,12 +119,19 @@ function App() {
                                 }}
                             >
                                 <img
-                                    sx={{ width: "200px", my: 3 }}
+                                    sx={{
+                                        width: "200px",
+                                        my: 3,
+                                        pointerEvents: "none",
+                                    }}
                                     src={publicUrl + "images/jf2.png"}
                                 ></img>
 
                                 <img
-                                    sx={{ width: "200px" }}
+                                    sx={{
+                                        width: "200px",
+                                        pointerEvents: "none",
+                                    }}
                                     src={publicUrl + "images/jf1.png"}
                                 ></img>
                                 <p sx={{ color: "white", my: 3 }}>
