@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+// eslint-disable-next-line
 import { jsx } from "theme-ui";
 import { particleConfig } from "./particle-config";
 import { useEffect, useRef } from "react";
@@ -22,9 +23,26 @@ export default function Particles(props) {
     let NUM_PARTICLES = ROWS * COLS;
     let particleMap = [];
     let particles = [];
-    let mx, my, bounds, w, h, ctx, tog, b, a, n, p, container, canvas;
-
-    let tuna, gain, reverb, panner, delay, phaser, tremolo;
+    let mx,
+        my,
+        bounds,
+        w,
+        h,
+        ctx,
+        tog,
+        b,
+        a,
+        n,
+        p,
+        container,
+        canvas,
+        tuna,
+        gain,
+        reverb,
+        panner,
+        delay,
+        phaser,
+        tremolo;
 
     useEffect(() => {
         if (!container) {
@@ -62,24 +80,24 @@ export default function Particles(props) {
             pan: 0,
         });
         delay = new tuna.PingPongDelay({
-            wetLevel: 0.5, //0 to 1
-            feedback: 0.3, //0 to 1
-            delayTimeLeft: 200, //1 to 10000 (milliseconds)
-            delayTimeRight: 400, //1 to 10000 (milliseconds)
+            wetLevel: 0.5,
+            feedback: 0.3,
+            delayTimeLeft: 200,
+            delayTimeRight: 400,
         });
         phaser = new tuna.Phaser({
-            rate: 0.1, //0.01 to 8 is a decent range, but higher values are possible
-            depth: 0.6, //0 to 1
-            feedback: 0.7, //0 to 1+
-            stereoPhase: 40, //0 to 180
-            baseModulationFrequency: 700, //500 to 1500
+            rate: 0.1,
+            depth: 0.6,
+            feedback: 0.7,
+            stereoPhase: 40,
+            baseModulationFrequency: 700,
             bypass: 0,
         });
 
         tremolo = new tuna.Tremolo({
-            intensity: 0.3, //0 to 1
-            rate: 5, //0.001 to 8
-            stereoPhase: 0, //0 to 180
+            intensity: 0.3,
+            rate: 5,
+            stereoPhase: 0,
             bypass: 0,
         });
     };
@@ -132,13 +150,6 @@ export default function Particles(props) {
     };
 
     const applyAudioEffects = (e) => {
-        // let noise = noise3D(e.clientX, e.clientY, noiseZ);
-        // phaser.rate =
-        //     convertRange(e.clientX, 1, window.screen.width, 0.01, 8) *
-        //     Math.abs(noise);
-        // phaser.feedback =
-        //     convertRange(e.clientY, 1, window.screen.height, 0, 1) *
-        //     Math.abs(noise);
         tremoloUpdate(e);
     };
 
@@ -152,12 +163,9 @@ export default function Particles(props) {
             0,
             1
         );
-        // rate: 5, //0.001 to 8
-        // stereoPhase: 0, //0 to 180
     };
 
     const initParticles = () => {
-        // initField();
         img.src = publicUrl + "images/venice_small.png";
 
         tog = true;

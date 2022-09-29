@@ -12,10 +12,7 @@ function App() {
     const [audioContext, setAudioContext] = useState(null);
     const [bufferedSamples, setBufferedSamples] = useState([]);
 
-    let audioCtx;
-    let tuna, chorus, atmoGain;
-    let atmo;
-    let impulse;
+    let audioCtx, tuna, chorus, atmoGain, atmo, impulse;
     const sampleBuffer = [];
     const NUMBER_OF_SAMPLES = 16;
 
