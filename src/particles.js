@@ -44,9 +44,7 @@ export default function Particles(props) {
         gain,
         reverb,
         panner,
-        delay,
-        phaser,
-        tremolo;
+        delay;
 
     useEffect(() => {
         if (!container) {
@@ -89,21 +87,6 @@ export default function Particles(props) {
             delayTimeLeft: 200,
             delayTimeRight: 400,
         });
-        phaser = new tuna.Phaser({
-            rate: 0.1,
-            depth: 0.6,
-            feedback: 0.7,
-            stereoPhase: 40,
-            baseModulationFrequency: 700,
-            bypass: 0,
-        });
-
-        tremolo = new tuna.Tremolo({
-            intensity: 0.3,
-            rate: 5,
-            stereoPhase: 0,
-            bypass: 0,
-        });
     };
 
     const playSound = () => {
@@ -113,7 +96,8 @@ export default function Particles(props) {
         playSample.connect(gain);
         gain.connect(delay);
         delay.connect(reverb);
-        reverb.connect(audioCtx.destination);
+        reverb.connect(panner);
+        panner.connect(audioCtx.destination);
         playSample.start();
     };
 
@@ -153,18 +137,27 @@ export default function Particles(props) {
     };
 
     const applyAudioEffects = (e) => {
-        tremoloUpdate(e);
+        delayUpdate(e);
+        pannerUpdate(e);
     };
 
-    const tremoloUpdate = (e) => {
-        let rnd = Math.random();
-
-        tremolo.intensity = convertRange(
+    const pannerUpdate = (e) => {
+        panner.pan = convertRange(
             e.clientX,
             1,
             window.screen.width,
-            0,
-            1
+            -0.75,
+            0.75
+        );
+    };
+
+    const delayUpdate = (e) => {
+        delay.feedback = convertRange(
+            e.clientY,
+            1,
+            window.screen.height,
+            0.1,
+            0.9
         );
     };
 

@@ -28,6 +28,7 @@ function App() {
                 chorus = new tuna.Chorus({
                     rate: 8,
                     feedback: 0.2,
+                    depth: 0.7,
                     delay: 0.0045,
                     bypass: 0,
                 });
@@ -60,7 +61,7 @@ function App() {
                 setAudio(true);
                 setAudioContext(audioCtx);
 
-                window.addEventListener("mousemove", (e) => chorusTest(e));
+                window.addEventListener("mousemove", (e) => chorusUpdate(e));
             } catch (e) {
                 alert("Web Audio API is not supported in this browser");
             }
@@ -73,8 +74,15 @@ function App() {
         return ((oldval - oldmin) * newRange) / oldrange + newmin;
     };
 
-    const chorusTest = (e) => {
-        chorus.rate = convertRange(e.clientX, 1, window.screen.width, 0.01, 4);
+    const chorusUpdate = (e) => {
+        chorus.rate = convertRange(e.clientX, 1, window.screen.width, 0.1, 6);
+        chorus.feedback = convertRange(
+            e.clientY,
+            1,
+            window.screen.height,
+            0.25,
+            0.75
+        );
     };
 
     const loadSamples = () => {
