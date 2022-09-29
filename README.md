@@ -1,14 +1,15 @@
 # Jukebox Fusion
 
-Im Projekt „Jukebox Fusion“ wird das KI-Tool Jukebox verwendet, um musikalische Audioaufnahmen aus Venedig reproduzieren und zu ergänzen. Zudem wird eine Webseite erstellt, auf der die künst-lich hergestellte Klanglandschaft zu hören ist. Des weiterem ist es möglich auf der Webseite mit Interaktionen weitere Audioeindrücke aus Venedig zu hören. 
+Im Projekt „Jukebox Fusion“ wird das KI-Tool Jukebox verwendet, um musikalische Audioaufnahmen aus Venedig und der Biennale reproduzieren und zu ergänzen. Zudem wird eine Webseite erstellt, auf der die künst-lich hergestellte Klanglandschaft zu hören ist. Des weiterem ist es möglich auf der Webseite mit Interaktionen weitere Audioeindrücke aus Venedig zu hören. 
 
 ## Technologien
 
-Audio – Jukebox AI, FL Studio, Adobe Audition
+
+### Audio – Jukebox AI, FL Studio, Adobe Audition
 
 Jukebox: Jukebox ist ein neuronales Netz das Musik generiert. Dabei benötigt es eine Audiodatei und ein Genre als Input. Zudem ist es möglich einen Künstler auszuwählen, den die KI versucht zu imitieren. Zuletzt muss die Länge des Outputs eingestellt werden.
 
-Webseite – JavaScript, React, Web Audio API, Tuna.js
+### Webseite – JavaScript, React, Web Audio API, Tuna.js
 
 Die Webseite hat das Ziel durch viel minimalistische Dy-namik die atmosphärische Musik, die durch die AI generiert wurde zu ergänzen.
 
