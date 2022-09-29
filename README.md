@@ -11,6 +11,6 @@ Jukebox: Jukebox ist ein neuronales Netz das Musik generiert. Dabei benötigt es
 
 ### Webseite – JavaScript, React, Web Audio API, Tuna.js
 
-Die Webseite hat das Ziel durch viel minimalistische Dy-namik die atmosphärische Musik, die durch die AI generiert wurde zu ergänzen.
+Die Webseite hat das Ziel durch viel minimalistische Dynamik die atmosphärische Musik, die durch die AI generiert wurde zu ergänzen.
 
 Die Webseite wurde größtenteils mit JavaScript in eine React-Projektstruktur entwickelt. Das zentrale Element der Webseite sind die Partikel die permanent neu in einem Canvas-Element gerendert werden. Mithilfe der Web Audio API, können wir Audiodateien beliebig abspielen. Für die Web Audio API haben wir Tuna.js benutzt. Das ist eine JS-Library die auf die Web Audio API aufbaut und nahezu identisch funktioniert. Neben der Interaktivität mit Mauscursor und Partikeln, wollten wir auch eine Interaktivität zwischen Mauscursor und Audio herstellen. Bei Bewegung der Maus über die Webseite ändern sich die Parameter der einzelnen Audioeffekte. 

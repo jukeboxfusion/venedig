@@ -1,3 +1,5 @@
+/* Jukebox Fusion - Alexander Galperin and Marcel Joschko */
+
 import { particleConfig } from "./particle-config";
 
 export default class Particle {

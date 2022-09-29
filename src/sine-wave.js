@@ -1,4 +1,7 @@
 /** @jsxImportSource theme-ui */
+
+/* Jukebox Fusion - Alexander Galperin and Marcel Joschko */
+
 import { jsx } from "theme-ui";
 
 import { useRef, useEffect } from "react";

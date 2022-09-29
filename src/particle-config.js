@@ -1,3 +1,5 @@
+/* Jukebox Fusion - Alexander Galperin and Marcel Joschko */
+
 export const particleConfig = {
     THICKNESS: Math.pow(80, 2),
     SPACING: 4,

@@ -1,4 +1,8 @@
 /** @jsxImportSource theme-ui */
+
+/* Jukebox Fusion - Alexander Galperin and Marcel Joschko */
+/* Credits to Justin Windle (https://github.com/soulwire) for particle init and drawing function */
+
 // eslint-disable-next-line
 import { jsx } from "theme-ui";
 import { particleConfig } from "./particle-config";
