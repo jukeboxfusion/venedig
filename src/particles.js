@@ -108,7 +108,6 @@ export default function Particles(props) {
 
     const playSound = () => {
         let rnd = Math.floor(Math.random() * props.numberSamples);
-        console.log("Sample " + rnd);
         let playSample = audioCtx.createBufferSource();
         playSample.buffer = sampleBuffer[rnd];
         playSample.connect(gain);

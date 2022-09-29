@@ -17,7 +17,7 @@ function App() {
 
     let audioCtx, tuna, chorus, atmoGain, atmo, impulse;
     const sampleBuffer = [];
-    const NUMBER_OF_SAMPLES = 16;
+    const NUMBER_OF_SAMPLES = 23;
 
     const setupAudio = () => {
         if (!audioCtx) {
