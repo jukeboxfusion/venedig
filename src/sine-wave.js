@@ -100,7 +100,7 @@ export default function SineWave(props) {
     return (
         <canvas
             sx={{
-                width: "100px",
+                width: "10vh",
                 position: "absolute",
                 top: "90%",
                 left: "90%",

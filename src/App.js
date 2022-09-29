@@ -39,12 +39,13 @@ function App() {
                         atmo = audioCtx.createBufferSource();
                         atmo.buffer = buffer;
                         atmoGain = audioCtx.createGain();
-                        atmoGain.gain.value = 0.75;
+                        atmoGain.gain.value = 0;
                         atmo.connect(atmoGain)
                             .connect(chorus)
                             .connect(audioCtx.destination);
                         atmo.loop = true;
                         atmo.start(0, Math.floor(Math.random() * 511));
+                        rampUpGain();
                     });
 
                 fetch(publicUrl + "sounds/IMreverbs/Large_Long_Echo_Hall.wav")
@@ -88,6 +89,18 @@ function App() {
         setBufferedSamples(sampleBuffer);
     };
 
+    const rampUpGain = () => {
+        let every = 10;
+        let stepSize = convertRange(every, 1, 2000, 0, 0.75) / every;
+        let interval = setInterval(function () {
+            if (atmoGain.gain.value >= 0.75) {
+                atmoGain.gain.value = 0.75;
+                clearInterval(interval);
+            }
+            atmoGain.gain.value += stepSize;
+        }, every);
+    };
+
     return (
         <div className="App">
             {audio ? (
@@ -102,7 +115,7 @@ function App() {
                 </Fragment>
             ) : (
                 <Fragment>
-                    <div onClick={setupAudio}>
+                    <div>
                         <div
                             sx={{
                                 height: "100vh",
@@ -130,12 +143,21 @@ function App() {
                                 <img
                                     sx={{
                                         width: "200px",
-                                        pointerEvents: "none",
+
+                                        cursor: "pointer",
                                     }}
                                     src={publicUrl + "images/jf1.png"}
+                                    onClick={setupAudio}
                                 ></img>
-                                <p sx={{ color: "white", my: 3 }}>
-                                    best experienced with headphones
+                                <p
+                                    sx={{
+                                        color: "white",
+                                        my: 3,
+                                        fontFamily: "Space Mono",
+                                        fontSize: "8pt",
+                                    }}
+                                >
+                                    click and move to create your own experience
                                 </p>
                             </div>
                         </div>

@@ -1,0 +1,15 @@
+{
+    "short_name": "Jukebox Fusion",
+    "name": "Jukebox Fusion by Alexander Galperin and Marcel Joschko",
+    "icons": [
+      {
+        "src": "favicon.ico",
+        "sizes": "48x48",
+        "type": "image/x-icon"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#121212"
+  }
