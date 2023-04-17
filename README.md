@@ -3,6 +3,8 @@
 Das Projekt „Jukebox Fusion“ wurde im Rahmen einer Exkursion zur 59. Biennale konzipiert und entwickelt von Alexander Galperin und Marcel Joschko.
 Im Projekt wird das KI-Tool Jukebox verwendet, um musikalische Audioaufnahmen aus Venedig und der Biennale reproduzieren und zu ergänzen. Zudem wird eine Webseite erstellt, auf der die künstlich hergestellte Klanglandschaft zu hören ist. Des weiteren ist es möglich auf der Webseite mit Userinteraktionen weitere Audioeindrücke aus Venedig zu hören. 
 
+[Live Demo](https://jukeboxfusion.github.io)
+
 ## Technologien
 
 
